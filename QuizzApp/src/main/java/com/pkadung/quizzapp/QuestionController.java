@@ -33,7 +33,7 @@ public class QuestionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/quizzdb", "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/quizdb", "root", "root");
             
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT *FROM category");
