@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="338.0" styleClass="Main" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pkadung.quizzapp.PrimaryController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="338.0" styleClass="Main" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pkadung.quizzapp.PrimaryController">
    <children>
       <Text stroke="#0b4eb9" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Subject" text="QuizzApp" />
       <Button graphicTextGap="3.0" mnemonicParsing="false" onAction="#handleQuestionManagement" prefHeight="51.0" prefWidth="173.0" styleClass="Button" text="Quan ly cau hoi">
@@ -14,11 +14,12 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="93.0" layoutY="217.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#handlePractice" prefHeight="51.0" prefWidth="173.0" styleClass="Button" text="Thi">
+      <Button layoutX="93.0" layoutY="217.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="173.0" styleClass="Button" text="Thi">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
+      <Button mnemonicParsing="false" onAction="#handlePractice" styleClass="Button" text="Luyen Tap" />
       <ComboBox fx:id="cbThemes" onAction="#changeTheme" prefWidth="150.0" styleClass="Button" />
    </children>
 </VBox>

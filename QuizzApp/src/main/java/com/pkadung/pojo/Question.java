@@ -71,6 +71,11 @@ public class Question {
             return this;
         }
 
+        public Builder addAllChoice(List<Choice> choices) {
+            this.choices.addAll(choices);
+            return this;
+        }
+
         public Question build() {
             return new Question(this);
         }

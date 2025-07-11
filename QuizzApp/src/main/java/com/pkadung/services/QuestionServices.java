@@ -4,14 +4,11 @@
  */
 package com.pkadung.services;
 
-import com.pkadung.pojo.Category;
+import com.pkadung.pojo.Choice;
 import com.pkadung.pojo.Question;
 import com.pkadung.utils.JdbcConnector;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +89,49 @@ public class QuestionServices {
 
         return questions;
     }
+
+    public List<Question> getQuestions(int num) throws SQLException {
+        Connection conn = JdbcConnector.getInstance().connect();
+        String sql = "Select * from question Order By rand() Limit ?";
+        PreparedStatement stm = conn.prepareCall(sql);
+        stm.setInt(1, num);
+        ResultSet rs = stm.executeQuery();
+
+        List<Question> questions = new ArrayList<>();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String content = rs.getString("content");
+            System.out.println(id);
+            Question q = new Question.Builder(id, content).addAllChoice(this.getChoicesByQuestionId(id)).build();
+
+
+            questions.add(q);
+        }
+
+        return questions;
+    }
+
+    public List<Choice> getChoicesByQuestionId(int questionId) throws SQLException {
+        Connection conn = JdbcConnector.getInstance().connect();
+
+        String sql = "Select * from choice where question_id=?";
+        PreparedStatement stm = conn.prepareCall(sql);
+        stm.setInt(1, questionId);
+
+        ResultSet rs = stm.executeQuery();
+
+        List<Choice> choices = new ArrayList<>();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String content = rs.getString("content");
+            boolean correct = rs.getBoolean("is_correct");
+
+            choices.add(new Choice(id, content, correct));
+        }
+
+        return choices ;
+    }
+
 
     public boolean deleteQuestion(int questionId) throws SQLException {
         Connection conn = JdbcConnector.getInstance().connect();
